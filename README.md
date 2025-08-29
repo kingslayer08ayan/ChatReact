@@ -131,8 +131,7 @@ Open 👉 [http://localhost:5173](http://localhost:5173)
 
 ## 🎥 Demo
 
-![Demo](demo.gif)  
-*(Attach your `demo.gif` in the project root to visualize the chat in action)*  
+![Demo](demo.gif)
 
 ---
 
@@ -149,3 +148,4 @@ Open 👉 [http://localhost:5173](http://localhost:5173)
 ## 📜 License
 
 This project is licensed under the MIT License.  
+
