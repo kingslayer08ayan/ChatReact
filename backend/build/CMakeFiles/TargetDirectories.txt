@@ -1,0 +1,4 @@
+/mnt/c/Users/Ayan/Projects/ChatReact/backend/build/CMakeFiles/chat_server.dir
+/mnt/c/Users/Ayan/Projects/ChatReact/backend/build/CMakeFiles/chat_client.dir
+/mnt/c/Users/Ayan/Projects/ChatReact/backend/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Ayan/Projects/ChatReact/backend/build/CMakeFiles/rebuild_cache.dir

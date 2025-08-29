@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wall -Wextra CMakeFiles/chat_client.dir/src/client_main.cpp.o CMakeFiles/chat_client.dir/src/client.cpp.o CMakeFiles/chat_client.dir/src/message.cpp.o CMakeFiles/chat_client.dir/src/config.cpp.o CMakeFiles/chat_client.dir/src/utils.cpp.o -o chat_client 
