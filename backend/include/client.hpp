@@ -14,10 +14,12 @@ namespace ChatServer {
         bool connectToServer();
         void sendMessage(const std::string& msg);
         std::string receiveMessage();
-
+        bool sendFile(const std::string& target, const std::string& filepath);
+        void listen();
+        void receiveFile(const std::string& filename, int filesize);
         void setUsername(const std::string& name) { username = name; }
         std::string getUsername() const { return username; }
-
+        int getSockFD() const { return sock_fd; }
     private:
         int sock_fd;
         std::string server_host;

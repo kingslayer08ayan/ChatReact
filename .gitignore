@@ -1,1 +1,14 @@
 vcpkg/
+# Build files
+backend/build/
+*.o
+*.d
+*.log
+
+# Node modules
+node_modules/
+frontend/node_modules/
+
+# Lock files (optional)
+package-lock.json
+frontend/package-lock.json

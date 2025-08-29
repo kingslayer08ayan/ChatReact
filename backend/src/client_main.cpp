@@ -6,17 +6,6 @@
 
 std::atomic<bool> running(true);
 
-void receiveMessages(ChatServer::Client& client) {
-    while (running) {
-        std::string msg = client.receiveMessage();
-        if (!msg.empty()) {
-            // Print message and keep input prompt intact
-            std::cout << "\r" << msg << "\n> ";
-            std::cout.flush();
-        }
-    }
-}
-
 int main() {
     std::string username;
     std::cout << "Enter your username: ";
@@ -32,8 +21,10 @@ int main() {
     client.sendMessage(username);
     std::cout << "Username set to " << username << std::endl;
 
-    // Start receiver thread
-    std::thread receiver(receiveMessages, std::ref(client));
+    // Start receiver thread using the new listen() method
+    std::thread receiver([&client]() {
+        client.listen();   // <- this calls the method you added in client.cpp
+    });
 
     std::string input;
     while (running) {
@@ -45,6 +36,24 @@ int main() {
             break;
         }
 
+        // Parse /sendfile command
+        if (input.rfind("/sendfile ", 0) == 0) {
+            size_t space_pos = input.find(' ', 10);
+            if (space_pos == std::string::npos) {
+                std::cout << "Usage: /sendfile <user> <filepath>\n";
+                continue;
+            }
+
+            std::string target_user = input.substr(10, space_pos - 10);
+            std::string filepath = input.substr(space_pos + 1);
+
+            if (!client.sendFile(target_user, filepath)) {
+                std::cerr << "File transfer failed!\n";
+            }
+
+            continue;
+        }
+
         if (!input.empty()) {
             client.sendMessage(input);
         }
@@ -52,7 +61,7 @@ int main() {
 
     // Gracefully shutdown
     client.sendMessage(username + " has left the chat.");
-    receiver.join(); // wait for receiver thread to finish
+    receiver.join(); // wait for listener thread to finish
     std::cout << "Disconnected from server." << std::endl;
     return 0;
 }
